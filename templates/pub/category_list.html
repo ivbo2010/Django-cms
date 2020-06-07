@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="resume-section d-flex flex-column" id="portfolio">
+     <div class="title-bar">
+        <div class="col-md-12">
+            <h2 class="text-center">Category list</h2>
+            <div class="heading-border"></div>
+        </div>
+    </div>
+    <div class="row">
+        {% for category in pub_categories %}
+        <div class="col-lg-3">
+            <a href="{% url 'pub_category_detail' category.slug %}">
+                <img src="{{ category.image.url }}" class="img-fluid img-centered">
+                <h4 class="text-center p-2">{{ category.name }}</h4>
+            </a>
+        </div>
+        {% endfor %}
+
+    </div>
+</section>
+
+
+{% endblock %}

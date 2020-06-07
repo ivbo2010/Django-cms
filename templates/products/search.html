@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="  text-center">Search for: {{query}}</h2>
+                <div class="mb-5 heading-border"></div>
+            </div>
+        </div>
+<div class="row">
+        {% for product in products %}
+        <div class="col-lg-3">
+            <a href="{% url 'product_detail' product.slug %}">
+                <img src="{{ product.image.url }}" class="img-fluid img-centered">
+                <h4><{{ product.name }} <br></h4>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock content %}

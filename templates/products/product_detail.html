@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="modal-body">
+    <div class="title-bar">
+        <div class="col-md-12">
+            <h2 class="text-center">{{ product.name }}</h2>
+            <div class="heading-border"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <img class="img-fluid img-centered" src="{{ product.image.url }}" alt="">
+        </div>
+        <div class="col-md-6">
+            <p>{{ product.description }}</p>
+            <ul class="list-inline item-details">
+                <li>Category:
+                    <strong>
+                        <a href="/category_detail/{{ product.category.slug }}">{{ product.category.name }}</a>
+                    </strong>
+                </li>
+                <li>Tag:
+                    <strong>
+                        <a href="/tag_detail/{{ product.tag.slug }}">{{ product.tag.name }}</a>
+                    </strong>
+                </li>
+                <li>Country:
+                    <strong>
+                        <a href="/country_detail/{{ product.country.id }}">{{ product.country.name }}</a>
+                    </strong>
+                </li>
+            </ul>
+            <a class="btn btn-general btn-white" href=" {% url 'products_list' %}">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                All Products
+            </a>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

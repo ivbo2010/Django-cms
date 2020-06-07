@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section>
+    <div class="owl-carousel owl-theme blog-slider row">
+        {% for product in more_context %}
+        <div class="card blog__slide text-center col-lg-3 col-6 no-gutter">
+            <div class="blog__slide__img">
+                <a href="{% url 'pub_detail' product.slug %}">
+                    <img class="card-img rounded-0" src="{{ product.image.url }}" alt="">
+                </a>
+            </div>
+            <div class="blog__slide__content">
+                <h3><a href="{% url 'pub_detail' product.slug %}">{{ product.name }}</a></h3>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<section>
+    <div class="owl-carousel owl-theme blog-slider row">
+        {% for product in beer_context %}
+        <div class="blog__slide text-center col-lg-3 col-6 no-gutter">
+            <div class="blog__slide__img">
+                <a href="{% url 'product_detail' product.slug %}">
+                    <img class="card-img rounded-0" src="{{ product.image.url }}" alt="">
+                </a>
+            </div>
+            <div class="blog__slide__content">
+                <a class="blog__slide__label" href="{% url 'tag_detail' product.tag.slug %}">{{product.tag.name }}</a>
+                <h3><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h3>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+{% endblock content %}

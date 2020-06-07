@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="title-bar">
+        <div class="col-md-12">
+            <h2 class="text-center">Tag list</h2>
+            <div class="heading-border"></div>
+        </div>
+    </div>
+    <div class="row">
+        {% for tag in tags %}
+        <div class="col-lg-2">
+            <div><h4><a href="{% url 'tag_detail' tag.slug %}">{{ tag.name }}</a></h4></div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock %}

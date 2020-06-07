@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="resume-section d-flex flex-column" id="portfolio">
+
+        <div class="title-bar">
+        <div class="col-md-12">
+            <h2 class="text-center">Category list</h2>
+            <div class="heading-border"></div>
+        </div>
+    </div>
+        <div class="row">
+            {% for category in categories %}
+            <div class="col-6 col-lg-2 col-md-3 col-sm-6 portfolio-item filter finance">
+                <a class="portfolio-link" href="{% url 'category_detail' category.slug %}">
+                    <div class="caption-port">
+                        <div class="caption-port-content">
+                            <i class="fa fa-link fa-3x"></i>
+                        </div>
+                    </div>
+                    <img class="img-fluid" src="{{ category.image.url }}" alt="">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

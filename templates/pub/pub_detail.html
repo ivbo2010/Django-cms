@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="modal-body">
+    <div class="title-bar">
+        <div class="col-md-12">
+            <h2 class="text-center">{{ pub.name }}</h2>
+            <div class="heading-border"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <img class="img-fluid img-centered" src="{{ pub.image.url }}" alt="">
+        </div>
+        <div class="col-md-7">
+            <p>{{ pub.description }}</p>
+            <ul class="list-inline item-details">
+                <li>Category:
+                    <strong>
+                        <a href="/pub/category_detail/{{ pub.pub_category.slug }}">{{ pub.pub_category.name }}</a>
+                    </strong>
+                </li>
+            </ul>
+            <a class="btn btn-general btn-white" href=" {% url 'pub_list' %}">
+                <i class="fa fa-times"></i> Back
+            </a>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

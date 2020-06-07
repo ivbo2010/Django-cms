@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="title-bar">
+        <div class="col-md-12">
+            <h2 class="text-center">Pubs by Category: {{ pub_category.name }}</h2>
+            <div class="heading-border"></div>
+        </div>
+    </div>
+    <div class="row">
+        {% for pub in pubs %}
+        <div class="col-lg-3 col-6">
+            <a href="{% url 'pub_detail' pub.slug %}">
+                <img src="{{ pub.image.url }}" class="img-fluid img-centered">
+
+                <h4 class="text-center p-2">{{ pub.name }} <br></h4>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

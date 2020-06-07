@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid">
+    <section class="resume-section d-flex flex-column" id="portfolio">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="  text-center">Products</h2>
+                <div class="mb-5 heading-border"></div>
+            </div>
+            <div class="col-12 text-center">
+                {% if is_paginated %}
+                {% if page_obj.has_previous %}
+                <a href="?page=1" class="btn btn-outline-pagination mb-4">First</a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-pagination mb-4">Previous</a>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                <a href="?page={{ num }}" class="btn btn-pagination mb-4">{{ num }}</a>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3'%}
+                <a href="?page={{ num }}" class="btn btn-outline-pagination mb-4">{{ num }}</a>
+                {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-pagination mb-4">Next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-pagination mb-4">Last</a>
+                {% endif %}
+
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            {% for product in products %}
+            <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-2 portfolio-item filter finance">
+                <a class="portfolio-link" href="#productsModal{{ forloop.counter }}" data-toggle="modal">
+                    <div class="caption-port">
+                        <div class="caption-port-content">
+                            <i class="fa fa-search-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img class="img-fluid" src="{{ product.image.url }}" alt="">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    {% for product in products %}
+    <div class="portfolio-modal modal fade" id="productsModal{{ forloop.counter }}" tabindex="-1" role="dialog"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="modal-body">
+                            <div class="title-bar">
+                                <div class="col-md-12">
+                                    <h2 class="text-center">{{ product.name }}</h2>
+                                    <div class="heading-border"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <img class="img-fluid img-centered" src="{{ product.image.url }}" alt="">
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ product.description }}</p>
+                                    <ul class="list-inline item-details">
+                                        <li>Category:
+                                            <strong>
+                                                <a href="{% url 'category_detail' product.category.slug %}">{{product.category.name}}</a>
+                                            </strong>
+                                        </li>
+                                        <li>Tag:
+                                            <strong>
+                                                <a href="{% url 'tag_detail' product.tag.slug %}">{{ product.tag.name}}</a>
+                                            </strong>
+                                        </li>
+                                        <li>Country:
+                                            <strong>
+                                                <a href="{% url 'country_detail' product.country.id %}">{{product.country.name}}</a>
+                                            </strong>
+                                        </li>
+                                    </ul>
+                                    <button class="btn btn-general btn-white" type="button" data-dismiss="modal">
+                                        <i class="fa fa-times"></i> Close
+                                    </button>
+                                    <a class="btn btn-general btn-white"
+                                       href=" {% url 'product_detail' product.slug %}">
+                                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                        Read more
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

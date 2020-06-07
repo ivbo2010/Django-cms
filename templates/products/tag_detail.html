@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="title-bar">
+        <div class="col-md-12">
+            <h2 class="text-center">Products by Tag: {{ tag.name }}</h2>
+            <div class="heading-border"></div>
+        </div>
+    </div>
+    <div class="row">
+
+        {% for product in products %}
+        <div class="col-lg-3 col-6">
+            <a href="{% url 'product_detail' product.slug %}">
+                <img src="{{ product.image.url }}" class="img-fluid img-centered">
+                <h4><{{ product.name }} <br></h4>
+            </a>
+        </div>
+        {% endfor %}
+
+        {% endblock %}

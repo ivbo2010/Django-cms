@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="resume-section d-flex flex-column" id="portfolio">
+
+        <div class="row">
+            <div class="col-12">
+                <h2 class="  text-center">Pubs</h2>
+                <div class="mb-5 heading-border"></div>
+            </div>
+        </div>
+
+
+    <div class="container-fluid">
+        <div class="row">
+                {% for pub in pubs %}
+                <div class="col-sm-2 portfolio-item filter finance">
+                <a class="portfolio-link" href="{% url 'pub_detail' pub.slug %}" >
+                    <div class="caption-port">
+                        <div class="caption-port-content">
+                            <i class="fa fa-search-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <h5 class="text-center p-2"> {{ pub.name }}</h5>
+                    <img class="img-fluid" src="{{ pub.image.url }}" alt="">
+
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</section>
+{% endblock %}
